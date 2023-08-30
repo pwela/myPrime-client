@@ -32,7 +32,7 @@ export const MainView = () => {
   }, []);
 
   if (selectedMovie) {
-    // Filter movies by Genre and store it into similarMovieGenre
+    // Filter movies by Genre and store it into similarMovieGenre.
     const similarMovieGenre = movies.filter((movie) => {
       return (
         movie.Genre.Name === selectedMovie.Genre.Name &&
