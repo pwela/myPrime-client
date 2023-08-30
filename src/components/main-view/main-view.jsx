@@ -5,6 +5,7 @@ import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
+  const [moviesGenre, setMoviesGenre] = useState([]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
@@ -13,10 +14,6 @@ export const MainView = () => {
     fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/movies/")
       .then((response) => response.json())
       .then((movies) => {
-        console.log(movies);
-        console.log(typeof movies);
-        console.log(movies[0]);
-
         const moviesFromApi = movies.map((movie) => {
           return {
             id: movie._id,
@@ -35,11 +32,35 @@ export const MainView = () => {
   }, []);
 
   if (selectedMovie) {
+    // Filter movies by Genre and store it into similarMovieGenre
+    const similarMovieGenre = movies.filter((movie) => {
+      return (
+        movie.Genre.Name === selectedMovie.Genre.Name &&
+        movie.Title != selectedMovie.Title
+      );
+    });
+
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => setSelectedMovie(null)}
-      />
+      <div>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)}
+        />
+        <h1> Similar movies</h1>
+        <div>
+          {similarMovieGenre.map((movie) => {
+            return (
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
     );
   }
 
