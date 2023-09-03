@@ -28600,18 +28600,20 @@ const LoginView = ({ onLoggedIn })=>{
     const [password, setPassword] = (0, _react.useState)("");
     const handleSubmit = (event)=>{
         event.preventDefault(event);
-        const data = {
-            Username: username,
-            Password: password
+        const user = {
+            username: username,
+            password: password
         };
-        console.log(data);
-        //fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/login", {
-        fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/login?Username=testuser006&Password=123456", {
+        console.log(user);
+        // fetch(
+        // "https://my-prime-movies-95318ccd1782.herokuapp.com/login?Username=testuser006&Password=123456",
+        //  {
+        fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(user)
         }).then((response)=>response.json()).then((data)=>{
             console.log("Login response: ", data);
             if (data.user) {
@@ -28637,13 +28639,13 @@ const LoginView = ({ onLoggedIn })=>{
                         minLength: "5"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 44,
+                        lineNumber: 43,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 42,
+                lineNumber: 41,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -28656,13 +28658,13 @@ const LoginView = ({ onLoggedIn })=>{
                         required: true
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 54,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 52,
+                lineNumber: 51,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -28670,13 +28672,13 @@ const LoginView = ({ onLoggedIn })=>{
                 children: "Login"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 61,
+                lineNumber: 60,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 41,
+        lineNumber: 40,
         columnNumber: 5
     }, undefined);
 };
@@ -28854,6 +28856,6 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"7wgM7","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"faQYI","react":"21dqq"}],"lJZlQ":[function() {},{}]},["c5r7u","1taTY","d8Dch"], "d8Dch", "parcelRequireb703")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"7wgM7","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"faQYI"}],"lJZlQ":[function() {},{}]},["c5r7u","1taTY","d8Dch"], "d8Dch", "parcelRequireb703")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

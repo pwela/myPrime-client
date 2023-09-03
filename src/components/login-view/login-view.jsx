@@ -5,22 +5,21 @@ export const LoginView = ({ onLoggedIn }) => {
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault(event);
-    const data = {
-      Username: username,
-      Password: password,
+    const user = {
+      username: username,
+      password: password,
     };
-    console.log(data);
-    //fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/login", {
-    fetch(
-      "https://my-prime-movies-95318ccd1782.herokuapp.com/login?Username=testuser006&Password=123456",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
+    console.log(user);
+    // fetch(
+    // "https://my-prime-movies-95318ccd1782.herokuapp.com/login?Username=testuser006&Password=123456",
+    //  {
+    fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
