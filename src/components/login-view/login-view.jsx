@@ -6,20 +6,27 @@ export const LoginView = ({ onLoggedIn }) => {
   const handleSubmit = (event) => {
     event.preventDefault(event);
     const user = {
-      username: username,
-      password: password,
+      Username: username,
+      Password: password,
     };
     console.log(user);
     // fetch(
     // "https://my-prime-movies-95318ccd1782.herokuapp.com/login?Username=testuser006&Password=123456",
     //  {
-    fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
+    fetch(
+      "https://my-prime-movies-95318ccd1782.herokuapp.com/login" +
+        "?Username=" +
+        user.Username +
+        "&Password=" +
+        user.Password,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
