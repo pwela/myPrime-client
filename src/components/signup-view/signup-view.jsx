@@ -1,12 +1,19 @@
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
+  const [passwordcheck, setPasswordCheck] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (password != passwordcheck) {
+      alert("Password must been identical!");
+      return;
+    }
     const data = {
       Username: username,
       Password: password,
@@ -31,50 +38,63 @@ export const SignupView = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username</Form.Label>
+        <Form.Control
           type="text"
           value={username}
+          Placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
           required
-          minLength="5"
+          minLength="3"
         />
-      </label>
-      <label>
-        Password:
-        <input
+      </Form.Group>
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
           type="password"
           value={password}
+          Placeholder="Type password"
           onChange={(e) => setPassword(e.target.value)}
+          required
           minLength="6"
-          required
         />
-      </label>
-      <label>
-        Repeat Password:
-        <input type="password" minLength="6" required />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+      </Form.Group>
+      <Form.Group controlId="formPassword">
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control
+          type="password"
+          value={passwordcheck}
+          Placeholder="Retype password"
+          onChange={(e) => setPasswordCheck(e.target.value)}
           required
+          minLength="6"
         />
-      </label>
-      <label>
-        Birhtdate:
-        <input
+      </Form.Group>
+      <Form.Group controlId="formBirthdate">
+        <Form.Label>Birthdate</Form.Label>
+        <Form.Control
           type="date"
           value={birthdate}
+          Placeholder="Select birthday"
           onChange={(e) => setBirthdate(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+      </Form.Group>
+      <Form.Group controlId="formEmail">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          value={email}
+          Placeholder="Enter your mail"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Register
+      </Button>
+    </Form>
   );
 };

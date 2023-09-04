@@ -1,5 +1,12 @@
+$primary: Forestgreen;
+$body-bg: Azure;
+@import "~bootstrap/scss/bootstrap.scss";
 $color: steelblue;
 
 .my-prime {
   color: $color;
+}
+
+.Button {
+  color: white;
 }
