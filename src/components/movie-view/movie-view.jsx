@@ -9,8 +9,7 @@ export const MovieView = ({ movie, onBackClick }) => {
         <img src={movie.ImageUrl} alt="Movie image" />
       </div>
       <div>
-        <span> Title: </span>
-        <span> {movie.Title} </span>
+        <h3> Title: {movie.Title}</h3>
       </div>
       <div>
         <span>Description: </span>
@@ -18,30 +17,24 @@ export const MovieView = ({ movie, onBackClick }) => {
       </div>
       <h3> Director Details: </h3>
       <div>
-        <span>Name :</span>
-        <span>{movie.Director.Name}</span>
+        <h6> Name: {movie.Director.Name}</h6>
+        <span>
+          Birth: {movie.Director.Birth} - Death: {movie.Director.Death}{" "}
+        </span>
       </div>
       <div>
         <span>Bio :</span>
         <span>{movie.Director.Bio}</span>
-        <div>
-          <span> Birth: </span>
-          <span> {movie.Director.Birth}</span>
-          <span> - Death: </span>
-          <span> {movie.Director.Death}</span>
-        </div>
       </div>
 
       <h3> Genre info: </h3>
       <div>
-        <span>Genre name :</span>
-        <span>{movie.Genre.Name}</span>
+        <h6>Genre name : {movie.Genre.Name}</h6>
         <div>
           <span>Genre Description :</span>
           <span>{movie.Genre.Description}</span>
         </div>
       </div>
-      <button onClick={onBackClick}>Back to Main Screen</button>
     </div>
   );
 };
