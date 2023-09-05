@@ -2,7 +2,12 @@
 //import PropTypes from "props-type"; To install proptypes, run the command "npm install prop-types@15.8.1' in the CLI
 
 import PropTypes from "prop-types";
-export const MovieView = ({ movie, onBackClick }) => {
+import Button from "react-bootstrap/Button";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+  const movie = movies.find((m) => m.id === movieId);
   return (
     <div>
       <div>
@@ -34,6 +39,9 @@ export const MovieView = ({ movie, onBackClick }) => {
           <span>Genre Description :</span>
           <span>{movie.Genre.Description}</span>
         </div>
+        <Link to={`/`}>
+          <Button className="back-button">Back to homepage</Button>
+        </Link>
       </div>
     </div>
   );
@@ -59,5 +67,4 @@ MovieView.propTypes = {
     Actors: PropTypes.array.isRequired,
     Featured: PropTypes.bool.isRequired,
   }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
 };
