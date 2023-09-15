@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-export const SignupView = () => {
+export const ProfileUpdate = ({ userDetails, user, token, onLoggedOut }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -21,19 +23,27 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/users", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => {
+    console.log(user);
+    console.log(userDetails);
+    fetch(
+      `https://my-prime-movies-95318ccd1782.herokuapp.com/users/${user.Username}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    ).then((response) => {
       if (response.ok) {
-        alert("Singup successful");
-        window.location.reload();
+        alert(
+          "Update successful! You will be disconnected to reload your user info..."
+        );
+        onLoggedOut(user, token);
+        // window.location.reload();
       } else {
-        console.log(response);
-        alert("Signup failed");
+        alert("Update failed");
       }
     });
   };
@@ -47,7 +57,6 @@ export const SignupView = () => {
           value={username}
           placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
-          required
           minLength="3"
         />
       </Form.Group>
@@ -58,7 +67,6 @@ export const SignupView = () => {
           value={password}
           placeholder="Type password"
           onChange={(e) => setPassword(e.target.value)}
-          required
           minLength="6"
         />
       </Form.Group>
@@ -69,7 +77,6 @@ export const SignupView = () => {
           value={passwordcheck}
           placeholder="Retype password"
           onChange={(e) => setPasswordCheck(e.target.value)}
-          required
           minLength="6"
         />
       </Form.Group>
@@ -80,7 +87,6 @@ export const SignupView = () => {
           value={birthday}
           placeholder="Select birthday"
           onChange={(e) => setBirthday(e.target.value)}
-          required
         />
       </Form.Group>
       <Form.Group controlId="formEmail">
@@ -90,11 +96,10 @@ export const SignupView = () => {
           value={email}
           placeholder="Enter your mail"
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Register
+        Update Profile
       </Button>
     </Form>
   );

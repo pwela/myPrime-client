@@ -18,16 +18,21 @@ export const LoginView = ({ onLoggedIn }) => {
       user.Username +
       "&Password=" +
       user.Password;
-    // fetch(
-    // "https://my-prime-movies-95318ccd1782.herokuapp.com/login?Username=testuser006&Password=123456",
-    //  {
+
     fetch(loginUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
     })
+      /*   fetch(
+      "https://my-prime-movies-95318ccd1782.herokuapp.com/login",
+
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+    )*/
       .then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
@@ -51,7 +56,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Control
           type="text"
           value={username}
-          Placeholder="Enter your username"
+          placeholder="Enter your username"
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength="5"
@@ -62,7 +67,7 @@ export const LoginView = ({ onLoggedIn }) => {
         <Form.Control
           type="password"
           value={password}
-          Placeholder="Type password"
+          placeholder="Type password"
           onChange={(e) => setPassword(e.target.value)}
           required
           minLength="6"

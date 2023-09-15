@@ -1,4 +1,5 @@
 $primary: Forestgreen;
+$secondary: #304ffe;
 $body-bg: Azure;
 @import "~bootstrap/scss/bootstrap.scss";
 $color: steelblue;
@@ -9,4 +10,5 @@ $color: steelblue;
 
 .Button {
   color: white;
+  text-align: right;
 }
