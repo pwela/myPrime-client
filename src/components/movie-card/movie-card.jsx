@@ -1,3 +1,6 @@
+
+
+import React from "react";
 // PropTypes libray import
 //import PropTypes from "props-type"; To install proptypes, run the command "npm install prop-types@15.8.1' in the CLI
 import PropTypes from "prop-types";
@@ -21,7 +24,7 @@ export const MovieCard = ({ movie, userDetails, user, token }) => {
         }
       ).then((response) => {
         if (response.ok) {
-          alert("Movie Added in favorites...");
+          //  alert("Movie Added in favorites...");
           // onLoggedOut(user, token);
           window.location.reload();
         } else {
@@ -44,7 +47,7 @@ export const MovieCard = ({ movie, userDetails, user, token }) => {
         }
       ).then((response) => {
         if (response.ok) {
-          alert("Movie removed from favorites...");
+          // alert("Movie removed from favorites...");
           // onLoggedOut(user, token);
           window.location.reload();
         } else {
@@ -57,61 +60,41 @@ export const MovieCard = ({ movie, userDetails, user, token }) => {
   };
 
   return (
-    <Card className="h-100">
+    <Card border="primary" className="h-100 justify-content-around">
       <Card.Img variant="top" src={movie.ImageUrl} />
-      <Card.Body>
+      <Card.Body className="pb-1 mb-1 border-bottom-0">
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button variant="link" size="sm">
-            Details..
-          </Button>
-        </Link>
-        {userDetails.FavoriteMovies.includes(movie.id) ? (
-          <Button
-            Button
-            variant="danger"
-            size="sm"
-            className="pull-right"
-            onClick={removeFavoritesMovies}
-          >
-            Remove Fav
-          </Button>
-        ) : (
-          <Button
-            variant="success"
-            className="float-right"
-            onClick={addFavoritesMovies}
-          >
-            Add Fav
-          </Button>
-        )}
+        <div className="d-flex align-items-end justify-content-between flex-wrap">
+          <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+            <Button variant="link" size="sm">
+              Details..
+            </Button>
+          </Link>
+          {userDetails.FavoriteMovies.includes(movie.id) ? (
+            <Button
+              Button
+              variant="danger"
+              size="sm"
+              onClick={removeFavoritesMovies}
+            >
+              Remove Fav
+            </Button>
+          ) : (
+            <Button
+              variant="success"
+              size="sm"
+              onClick={addFavoritesMovies}
+            >
+              Add Fav
+            </Button>
+          )}
+        </div>
+
       </Card.Body>
     </Card>
   );
 };
-
-/* return (
-    <Card className="h-100">
-      <Card.Img variant="top" src={movie.ImageUrl} />
-      <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <Card.Text>{movie.Director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button variant="link">Details..</Button>
-        </Link>
-        <Button variant="primary" onClick={addFavoritesMovies}>
-          Add Fav
-        </Button>
-        <Button variant="danger" onClick={removeFavoritesMovies}>
-          Remove Fav
-        </Button>
-      </Card.Body>
-    </Card>
-  );
-};*/
-
-// prop constraints for MovieCard
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({

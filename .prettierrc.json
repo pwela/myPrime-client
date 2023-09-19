@@ -1,0 +1,12 @@
+{
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "overrides": [
+    {
+      "files": ["*.html", "*.css", "*.scss", "*.saas"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

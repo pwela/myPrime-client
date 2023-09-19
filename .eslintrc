@@ -1,0 +1,42 @@
+{
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "rules": {
+    "quotes": ["error", "double"],
+    "react/prop-types": "off",
+    "indent": ["error", 2],
+    "eqeqeq": ["error", "always"],
+    "no-console": "warn",
+    "no-alert": "warn",
+    "no-confusing-arrow": "warn",
+    "no-var": "error",
+    "prefer-const": "warn",
+    "prefer-destructuring": [
+      "warn",
+      {
+        "array": true,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "jsx-quotes": ["error", "prefer-double"],
+    "key-spacing": [
+      "error",
+      {
+        "afterColon": true,
+        "beforeColon": false
+      }
+    ],
+    "semi-style": ["error", "last"],
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": ["/dist/**", "/", "node_modules"]
+}

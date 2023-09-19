@@ -1,35 +1,36 @@
+import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar bg="primary" expand="lg">
+    <Navbar className="rounded mt-1" bg="primary" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" style={{ color: "black" }}>
           MyPrime
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav variant="underline" className="me-auto">
             {!user && (
               <>
-                <Nav.Link as={Link} to="/login">
+                <Nav.Link as={Link} to="/login" style={{ color: "white" }}>
                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
+                <Nav.Link as={Link} to="/signup" style={{ color: "white" }}>
                   Signup
                 </Nav.Link>
               </>
             )}
             {user && (
               <>
-                <Nav.Link as={Link} to="/">
+                <Nav.Link as={Link} to="/" style={{ color: "white" }}>
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/user">
+                <Nav.Link as={Link} to="/user" style={{ color: "white" }}>
                   My Profile
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                <Nav.Link onClick={onLoggedOut} style={{ color: "white" }}>Logout</Nav.Link>
               </>
             )}
           </Nav>

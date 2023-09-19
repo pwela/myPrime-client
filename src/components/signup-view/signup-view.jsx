@@ -10,10 +10,11 @@ export const SignupView = () => {
   const [passwordcheck, setPasswordCheck] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (password != passwordcheck) {
-      alert("Password must been identical!");
+    if (password !== passwordcheck) {
+      alert("Password must be identical!");
       return;
     }
+
     const data = {
       Username: username,
       Password: password,
@@ -93,7 +94,7 @@ export const SignupView = () => {
           required
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button className="mt-3" variant="primary" type="submit">
         Register
       </Button>
     </Form>

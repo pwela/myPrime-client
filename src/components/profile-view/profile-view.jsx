@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
 
 export const ProfileView = ({
   userDetails,
@@ -16,7 +17,10 @@ export const ProfileView = ({
   const [userDetails3, setUserDetails3] = useState(
     userDetails ? userDetails : null
   );
-  const userDelete = (event) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const userDelete = () => {
     fetch(
       `https://my-prime-movies-95318ccd1782.herokuapp.com/users/${user.Username}`,
       {
@@ -28,7 +32,7 @@ export const ProfileView = ({
       }
     ).then((response) => {
       if (response.ok) {
-        alert("Profile Deleted! You will be disconnected ...");
+        setShow(false);
         onLoggedOut(user, token);
       } else {
         alert("Delete failed");
@@ -38,7 +42,6 @@ export const ProfileView = ({
 
   if (!userDetails3) {
     const token = localStorage.getItem("token");
-    console.log("token: ", token);
     fetch("https://my-prime-movies-95318ccd1782.herokuapp.com/users/", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -54,22 +57,22 @@ export const ProfileView = ({
           };
         });
 
-        let u = usersFromApi.find((u) => u.Username === user.Username);
+        const u = usersFromApi.find((u) => u.Username === user.Username);
         setUserDetails3(u);
       });
   }
 
-  let favoritesMovies = movies.filter((movie) =>
+  const favoritesMovies = movies.filter((movie) =>
     userDetails3.FavoriteMovies.includes(movie.id)
   );
 
   return (
     <>
       {userDetails3 ? (
-        <Row className="justify-content-md-left">
+        <Row className="justify-content-md-left mb-2">
           <h3>User informations:</h3>
           <div> Username : {userDetails3.Username}</div>
-          <div> Birthday: {userDetails3.Birthday}</div>
+          <div> Birthday: {userDetails3.Birthday.slice(0, 10)}</div>
           <div> Email: {userDetails3.Email}</div>
 
           <>
@@ -89,9 +92,25 @@ export const ProfileView = ({
             <Link to={`/users/${encodeURIComponent(user.Username)}`}>
               <Button variant="link">Update user info</Button>
             </Link>
-            <Button variant="outline-danger" onClick={userDelete}>
+            <Button variant="outline-danger" onClick={handleShow}>
               Delete Account
             </Button>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header>
+                <Modal.Title>Confirm account delete?</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Your account will be permanently deleted and you will be logged out.
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="dark" onClick={handleClose}>
+                  Cancel
+                </Button>
+                <Button variant="danger" onClick={userDelete}>
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </Row>
       ) : (

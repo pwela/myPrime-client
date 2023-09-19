@@ -19,7 +19,7 @@ export const MovieView = ({ movies, user, userDetails, token }) => {
   console.log(similarMovies);
 
   return (
-    <Row className="justify-content-md-left">
+    <Row className="justify-content-md-left mb-3">
       <div>
         <img src={movie.ImageUrl} alt="Movie image" />
       </div>
