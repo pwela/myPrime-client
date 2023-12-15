@@ -1,6 +1,6 @@
-# Myprime App
+# Myprime App (React application)
 
-This apps works in combination with <a href="https://github.com/pwela/movie_api">movie_api</a>, a server-side app hosted on heroku.
+This REACT app works in combination with <a href="https://github.com/pwela/movie_api">movie_api</a>, a server-side app hosted on heroku.
 You can find all the details related to the api in my GitHub repository.
 
 ## Objective
@@ -26,7 +26,7 @@ https://myprime.netlify.app/
 6. React Redux
 7. netlify
 
-Programming langages:
+# Programming langages:
 
 1. JavaScript
 2. CSS
